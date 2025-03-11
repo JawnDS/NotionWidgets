@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+	<!-- Google Font -->
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+	<!-------->
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+
+		.navMenu {
+			font-family: 'Advent Pro', sans-serif;
+			padding: 8px;
+			text-align: center;
+			margin: 7px auto;
+			width: fit-content;
+		}
+
+		.navMenu a {
+			color: #272727;
+			text-decoration: none;
+			text-transform: uppercase;
+			display: inline-block;
+			padding: 6px;
+		}
+
+		.background {
+			background-color: #ece5f0;
+		}
+
+		.border {
+			border: 1px solid #cccccc;
+
+		}
+
+		.navMenu a:hover {
+
+			color: #d09c0b;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav class="navMenu  border">
+		<a id="LIVE TOPICS" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-fire"></i> Live Topics</a>
+		<a id="MAIN TOPICS" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-house"></i> Main Topics</a>
+		<a id="TEAMS" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-user-3"></i> Teams</a>
+		<a id="OTHER" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-star"></i> Other</a>
+
+
+
+	</nav>
+
+
+	<script>
+
+		let direction = "horizontal";
+		if (direction === "vertical") {
+			document.head.insertAdjacentHTML("beforeend", `<style>.navMenu a {display: block; text-align:left; margin:7px} i{width:15px; margin-right:5px} .navMenu{margin:3px}</style>`)
+		}
+
+
+		function navigate(id) {
+
+			if (id == 'Live Topics')
+				window.open("https://www.notion.so/asobostudio/QA-HOMEPAGE-15fb2e2c5e7680d3a433c46fa016830f?pvs=4#1abb2e2c5e7680429889d6e26240271f", '_blank').focus();
+			else if (id == "Main Topics")
+				window.open("https://www.notion.so/asobostudio/QA-HOMEPAGE-15fb2e2c5e7680d3a433c46fa016830f?pvs=4#1abb2e2c5e7680b896e5dbfc269de79e", '_blank').focus();
+			else if (id == "Teams")
+				window.open("https://www.notion.so/asobostudio/QA-HOMEPAGE-15fb2e2c5e7680d3a433c46fa016830f?pvs=4#1abb2e2c5e7680b896e5dbfc269de79e", '_blank').focus();
+			else if (id == "Other")
+				window.open("https://www.notion.so/asobostudio/QA-HOMEPAGE-15fb2e2c5e7680d3a433c46fa016830f?pvs=4#1abb2e2c5e7680439f85e2055b3043ec", '_blank').focus();
+			
+
+		}
+	</script>
+
+
+</body>
+
+</html>
