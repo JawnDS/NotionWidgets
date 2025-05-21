@@ -15,7 +15,7 @@
         margin: 0;
         padding: 0;
         font-family: "Space Grotesk", sans-serif;
-        background-image: url("https://images.steamusercontent.com/ugc/1758073114103109159/20B042641BF6359FEE0D9E96CE7D62205EB179A3/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"); // Reprend directement l'URL d'une image
+        background-image: url("https://images.steamusercontent.com/ugc/1758073114103109159/20B042641BF6359FEE0D9E96CE7D62205EB179A3/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false");
         background-size: cover;
         background-position: center;
         display: flex;
@@ -104,7 +104,7 @@
           text: "Ça marche chez moi.",
           author: "Unknown",
         },
-           {
+        {
           text: "Ce n'est pas un bug, c'est une feature!",
           author: "Unknown",
         },
@@ -150,15 +150,14 @@
       function setRandomQuote() {
         const randomIndex = Math.floor(Math.random() * quotes.length);
         const selectedQuote = quotes[randomIndex];
-        document.getElementById("quote").innerHTML = `${formatQuote(
-          selectedQuote.text
-        )}`;
+        document.getElementById("quote").innerHTML = `${formatQuote(selectedQuote.text)}`;
+        document.getElementById("author").textContent = `— ${selectedQuote.author || "Inconnu"}`;
       }
 
       updateTimeAndDate();
       setRandomQuote();
       setInterval(updateTimeAndDate, 1000);
-      setInterval(setRandomQuote, 60000); // Change quote every minute
+      setInterval(setRandomQuote, 60000);
     </script>
   </body>
 </html>
