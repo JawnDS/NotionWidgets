@@ -159,6 +159,8 @@
       let isBg1Visible = true;
 
       function changeBackground() {
+        currentIndex = (currentIndex + 1) % images.length;
+
         const nextImage = images[currentIndex];
         const visibleBg = isBg1Visible ? bg2 : bg1;
         const hiddenBg = isBg1Visible ? bg1 : bg2;
@@ -168,7 +170,6 @@
         hiddenBg.classList.remove("visible");
 
         isBg1Visible = !isBg1Visible;
-        currentIndex = (currentIndex + 1) % images.length;
       }
 
       function updateTimeAndDate() {
