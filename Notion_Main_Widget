@@ -1,210 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Time Widget</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Widget</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        font-family: "Space Grotesk", sans-serif;
-      }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Space Grotesk", sans-serif;
+    }
 
-      .background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        overflow: hidden;
-      }
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
 
-      .bg-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        transition: opacity 2s ease-in-out;
-      }
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: none;
+      transform: none;
+    }
 
-      .bg-image.visible {
-        opacity: 1;
-      }
+    .bg-image.visible {
+      opacity: 1;
+    }
 
-      .widget {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        padding: 30px;
-        width: 380px;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 1px;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        color: #ffffff;
-        margin: auto;
-        top: 50%;
-        transform: translateY(-50%);
-      }
+    .transition-fade {
+      transition: opacity 2s ease-in-out;
+    }
 
-      .time {
-        font-size: 56px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        margin-bottom: 10px;
-        color: #ffffff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      }
+    .transition-zoom {
+      transition: opacity 2s ease, transform 2s ease;
+      transform: scale(1.1);
+    }
 
-      .date {
-        font-size: 16px;
-        font-weight: 300;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-        color: #f8f8ff;
-      }
+    .transition-slide-left {
+      transition: opacity 2s ease, transform 2s ease;
+      transform: translateX(-10%);
+    }
 
-      .day {
-        font-size: 28px;
-        font-weight: 400;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        margin-bottom: 5px;
-        color: #ffffff;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      }
+    .transition-slide-right {
+      transition: opacity 2s ease, transform 2s ease;
+      transform: translateX(10%);
+    }
 
-      .quote-container {
-        margin-top: 5px;
-        padding: 5px;
-        border-radius: 1px;
-        background: rgba(0, 0, 0, 0.3);
-        color: #b0c4de;
-      }
+    .transition-rotate {
+      transition: opacity 2s ease, transform 2s ease;
+      transform: rotate(0.5deg) scale(1.05);
+    }
 
-      .quote {
-        font-size: 18px;
-        font-style: italic;
-        line-height: 1.5;
-        margin-bottom: 5px;
-      }
+    .widget {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 30px;
+      width: 380px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 1px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      color: #ffffff;
+      margin: auto;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-      .author {
-        font-family: "Consolas", monospace;
-        font-size: 14px;
-        text-align: right;
-        color: #ffffff;
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="background">
-      <div id="bg1" class="bg-image visible"></div>
-      <div id="bg2" class="bg-image"></div>
+    .time {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .date {
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      color: #f8f8ff;
+    }
+
+    .day {
+      font-size: 28px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 5px;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .quote-container {
+      margin-top: 5px;
+      padding: 5px;
+      border-radius: 1px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #b0c4de;
+    }
+
+    .quote {
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 5px;
+    }
+
+    .author {
+      font-family: "Consolas", monospace;
+      font-size: 14px;
+      text-align: right;
+      color: #ffffff;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div id="bg1" class="bg-image visible"></div>
+    <div id="bg2" class="bg-image"></div>
+  </div>
+
+  <div class="widget">
+    <div class="day" id="day"></div>
+    <div class="date" id="date"></div>
+    <div class="time" id="time"></div>
+    <div class="quote-container">
+      <div class="quote" id="quote"></div>
+      <div class="author" id="author"></div>
     </div>
+  </div>
 
-    <div class="widget">
-      <div class="day" id="day"></div>
-      <div class="date" id="date"></div>
-      <div class="time" id="time"></div>
-      <div class="quote-container">
-        <div class="quote" id="quote"></div>
-        <div class="author" id="author"></div>
-      </div>
-    </div>
+  <script>
+    const quotes = [
+      { text: "Ça marche chez moi.", author: "Unknown" },
+      { text: "Ce n'est pas un bug, c'est une feature!", author: "Unknown" },
+      { text: "La build elle a changé.", author: "Mbappé" },
+      { text: "Vous avez complètement intérêt, à aller dimanche!.", author: "Will2Pac" },
+      { text: "On n'est pas là pour être ici", author: "Serge Simon" },
+      { text: "Tester c'est douter.", author: "Unknown" },
+      { text: "Il n'y a qu'ensemble qu'on sera plusieurs.", author: "Unknown" },
+      { text: "Tout bien que tu détiens est un souci qui te retient.", author: "Skippy" }
+    ];
 
-    <script>
-      const quotes = [
-        { text: "Ça marche chez moi.", author: "Un grand sage" },
-        { text: "Ce n'est pas un bug, c'est une feature!", author: "Un grand sage" },
-        { text: "La build elle a changé.", author: "Mbappé" },
-        { text: "Vous avez complètement intérêt, à aller dimanche!", author: "Will2Pac" },
-        { text: "On n'est pas là pour être ici", author: "Serge Simon" },
-        { text: "Tester c'est douter.", author: "Un grand sage" },
-        { text: "Il n'y a qu'ensemble qu'on sera plusieurs.", author: "Patrick Chanfray" },
-        { text: "Tout bien que tu détiens est un souci qui te retient.", author: "Skippy" }
-      ];
+    const images = [
+      "https://i.imgur.com/bs3CzZP.jpeg",
+      "https://i.imgur.com/BsZmPRK.jpeg",
+      "https://i.imgur.com/KrXfXlJ.jpeg",
+      "https://i.imgur.com/fqD6uM0.jpeg",
+      "https://i.imgur.com/7u8Y0RA.jpeg",
+      "https://i.imgur.com/ea5vB76.jpeg",
+      "https://i.imgur.com/ZZNDlTP.jpeg",
+      "https://i.imgur.com/tw5F4hF.jpeg",
+      "https://i.imgur.com/Orbff1g.jpeg",
+      "https://i.imgur.com/kjHDgtT.jpeg",
+      "https://i.imgur.com/rPSD9ax.jpeg",
+      "https://i.imgur.com/kM8cMo8.jpeg",
+      "https://i.imgur.com/2xOHpdC.jpeg",
+      "https://i.imgur.com/6W430H6.jpeg",
+      "https://i.imgur.com/6eOf5Fx.jpeg",
+      "https://i.imgur.com/mgx5Hto.jpeg",
+      "https://i.imgur.com/Go8VeWQ.jpeg",
+      "https://i.imgur.com/P5ZvZC9.jpeg",
+      "https://i.imgur.com/Jy8lK0U.jpeg",
+      "https://i.imgur.com/vJOjj4k.jpeg",
+      "https://i.imgur.com/UnG7yQZ.jpeg",
+      "https://i.imgur.com/8x48npN.jpeg",
+      "https://i.imgur.com/Od9Sa84.jpeg"
+    ];
 
-      const images = [
-        "https://i.imgur.com/43RE0qb.jpeg",
-        "https://i.imgur.com/8Rf5Ieb.jpeg",
-        "https://i.imgur.com/RKr6P4T.jpeg",
-        "https://i.imgur.com/LsNKK36.jpeg",
-        "https://i.imgur.com/aVhqL79.jpeg",
-        "https://i.imgur.com/BSzlCyX.jpeg",
-        "https://i.imgur.com/2GjuSEf.jpeg",
-        "https://i.imgur.com/ASReXAC.jpeg",
-        "https://i.imgur.com/RF56QSC.jpeg"
-      ];
+    const transitions = [
+      "transition-fade",
+      "transition-zoom",
+      "transition-slide-left",
+      "transition-slide-right",
+      "transition-rotate"
+    ];
 
-      let currentIndex = 0;
-      let bg1 = document.getElementById("bg1");
-      let bg2 = document.getElementById("bg2");
-      let isBg1Visible = true;
+    let currentIndex = 0;
+    let isBg1Visible = true;
 
-      function changeBackground() {
-        currentIndex = (currentIndex + 1) % images.length;
+    const bg1 = document.getElementById("bg1");
+    const bg2 = document.getElementById("bg2");
 
-        const nextImage = images[currentIndex];
-        const visibleBg = isBg1Visible ? bg2 : bg1;
-        const hiddenBg = isBg1Visible ? bg1 : bg2;
+    function changeBackground() {
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * images.length);
+      } while (nextIndex === currentIndex);
 
-        visibleBg.style.backgroundImage = `url('${nextImage}')`;
-        visibleBg.classList.add("visible");
-        hiddenBg.classList.remove("visible");
+      const nextImage = images[nextIndex];
+      currentIndex = nextIndex;
 
-        isBg1Visible = !isBg1Visible;
-      }
+      const visibleBg = isBg1Visible ? bg2 : bg1;
+      const hiddenBg = isBg1Visible ? bg1 : bg2;
 
-      function updateTimeAndDate() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, "0");
-        const minutes = String(now.getMinutes()).padStart(2, "0");
-        const seconds = String(now.getSeconds()).padStart(2, "0");
-        document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
+      // Reset transition classes
+      visibleBg.className = "bg-image";
+      hiddenBg.className = "bg-image";
 
-        const options = { weekday: "long", month: "long", day: "numeric", year: "numeric" };
-        const formattedDate = now.toLocaleDateString("en-US", options).split(", ");
-        document.getElementById("day").textContent = formattedDate[0];
-        document.getElementById("date").textContent = formattedDate.slice(1).join(", ");
-      }
+      // Choose random transition
+      const randomTransition = transitions[Math.floor(Math.random() * transitions.length)];
+      visibleBg.classList.add(randomTransition);
 
-      function formatQuote(text) {
-        return text.replace(/,\s+/g, ",<br>").replace(/\s+and\s+/g, "<br>and ");
-      }
+      // Set next image and animate
+      visibleBg.style.backgroundImage = `url('${nextImage}')`;
+      visibleBg.classList.add("visible");
+      hiddenBg.classList.remove("visible");
 
-      function setRandomQuote() {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        const q = quotes[randomIndex];
-        document.getElementById("quote").innerHTML = formatQuote(q.text);
-        document.getElementById("author").textContent = `— ${q.author}`;
-      }
+      isBg1Visible = !isBg1Visible;
+    }
 
-      // Initial
-      bg1.style.backgroundImage = `url('${images[0]}')`;
-      updateTimeAndDate();
-      setRandomQuote();
+    function updateTimeAndDate() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
 
-      // Timers
-      setInterval(updateTimeAndDate, 1000);
-      setInterval(setRandomQuote, 60000);
-      setInterval(changeBackground, 60000);
-    </script>
-  </body>
+      const options = { weekday: "long", month: "long", day: "numeric", year: "numeric" };
+      const formattedDate = now.toLocaleDateString("en-US", options).split(", ");
+      document.getElementById("day").textContent = formattedDate[0];
+      document.getElementById("date").textContent = formattedDate.slice(1).join(", ");
+    }
+
+    function formatQuote(text) {
+      return text.replace(/,\s+/g, ",<br>").replace(/\s+and\s+/g, "<br>and ");
+    }
+
+    function setRandomQuote() {
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quote").innerHTML = formatQuote(q.text);
+      document.getElementById("author").textContent = `— ${q.author}`;
+    }
+
+    // Initialisation
+    bg1.style.backgroundImage = `url('${images[0]}')`;
+    updateTimeAndDate();
+    setRandomQuote();
+
+    // Timers
+    setInterval(updateTimeAndDate, 1000);
+    setInterval(setRandomQuote, 60000);
+    setInterval(changeBackground, 15000); // Changement toutes les 15s
+  </script>
+</body>
 </html>
