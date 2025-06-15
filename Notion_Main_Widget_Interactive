@@ -95,14 +95,8 @@
       margin-top: 10px;
     }
 
-    .controls {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 2;
-    }
-
-    .controls button {
+    .toggle-btn {
+      margin-top: 10px;
       padding: 8px 16px;
       border: none;
       background: rgba(0, 0, 0, 0.5);
@@ -112,16 +106,12 @@
       border-radius: 5px;
     }
 
-    .controls button:hover {
+    .toggle-btn:hover {
       background: rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
 <body>
-  <div class="controls">
-    <button id="toggleDiaporama">Désactiver le diaporama</button>
-  </div>
-
   <div class="background">
     <div id="bg1" class="bg-image visible"></div>
     <div id="bg2" class="bg-image"></div>
@@ -131,6 +121,10 @@
     <div class="day" id="day"></div>
     <div class="date" id="date"></div>
     <div class="time" id="time"></div>
+
+    <!-- BOUTON PLACÉ ICI SOUS L’HORLOGE -->
+    <button id="toggleDiaporama" class="toggle-btn">Désactiver le mode épuré</button>
+
     <div class="quote-container" id="quoteContainer">
       <div class="quote" id="quote"></div>
       <div class="author" id="author"></div>
@@ -231,7 +225,7 @@
       document.getElementById("quoteContainer").classList.toggle("hidden", !diaporamaActive);
 
       if (diaporamaActive) {
-        changeBackground(); // forcer un changement
+        changeBackground();
         diaporamaInterval = setInterval(changeBackground, 15000);
       } else {
         clearInterval(diaporamaInterval);
@@ -248,7 +242,7 @@
     setInterval(updateTimeAndDate, 1000);
     setInterval(setRandomQuote, 60000);
 
-    // Événement du bouton
+    // Bouton
     document.getElementById("toggleDiaporama").addEventListener("click", toggleDiaporama);
   </script>
 </body>
