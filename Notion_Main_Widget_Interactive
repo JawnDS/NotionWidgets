@@ -223,8 +223,8 @@
     function toggleDiaporama() {
       diaporamaActive = !diaporamaActive;
       document.getElementById("toggleDiaporama").textContent = diaporamaActive
-        ? "Désactiver le diaporama"
-        : "Activer le diaporama";
+        ? "Désactiver le mode épuré"
+        : "Activer le mode épuré";
 
       document.getElementById("day").classList.toggle("hidden", !diaporamaActive);
       document.getElementById("date").classList.toggle("hidden", !diaporamaActive);
