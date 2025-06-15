@@ -36,36 +36,11 @@
       background-size: cover;
       background-position: center;
       opacity: 0;
-      transition: none;
-      transform: none;
+      transition: opacity 2s ease-in-out;
     }
 
     .bg-image.visible {
       opacity: 1;
-    }
-
-    .transition-fade {
-      transition: opacity 2s ease-in-out;
-    }
-
-    .transition-zoom {
-      transition: opacity 2s ease, transform 2s ease;
-      transform: scale(1.1);
-    }
-
-    .transition-slide-left {
-      transition: opacity 2s ease, transform 2s ease;
-      transform: translateX(-10%);
-    }
-
-    .transition-slide-right {
-      transition: opacity 2s ease, transform 2s ease;
-      transform: translateX(10%);
-    }
-
-    .transition-rotate {
-      transition: opacity 2s ease, transform 2s ease;
-      transform: rotate(0.5deg) scale(1.05);
     }
 
     .widget {
@@ -190,14 +165,6 @@
       "https://i.imgur.com/Od9Sa84.jpeg"
     ];
 
-    const transitions = [
-      "transition-fade",
-      "transition-zoom",
-      "transition-slide-left",
-      "transition-slide-right",
-      "transition-rotate"
-    ];
-
     let currentIndex = 0;
     let isBg1Visible = true;
 
@@ -210,21 +177,12 @@
         nextIndex = Math.floor(Math.random() * images.length);
       } while (nextIndex === currentIndex);
 
-      const nextImage = images[nextIndex];
       currentIndex = nextIndex;
 
+      const nextImage = images[currentIndex];
       const visibleBg = isBg1Visible ? bg2 : bg1;
       const hiddenBg = isBg1Visible ? bg1 : bg2;
 
-      // Reset transition classes
-      visibleBg.className = "bg-image";
-      hiddenBg.className = "bg-image";
-
-      // Choose random transition
-      const randomTransition = transitions[Math.floor(Math.random() * transitions.length)];
-      visibleBg.classList.add(randomTransition);
-
-      // Set next image and animate
       visibleBg.style.backgroundImage = `url('${nextImage}')`;
       visibleBg.classList.add("visible");
       hiddenBg.classList.remove("visible");
@@ -263,7 +221,7 @@
     // Timers
     setInterval(updateTimeAndDate, 1000);
     setInterval(setRandomQuote, 60000);
-    setInterval(changeBackground, 15000); // Changement toutes les 15s
+    setInterval(changeBackground, 15000); // Changement toutes les 15 secondes
   </script>
 </body>
 </html>
