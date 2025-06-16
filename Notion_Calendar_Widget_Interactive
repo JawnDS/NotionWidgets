@@ -162,12 +162,12 @@
     }
 
     function saveNote() {
-      if (selectedDate) {
+        if (selectedDate) {
         notes[selectedDate] = noteInput.value;
         localStorage.setItem('calendarNotes', JSON.stringify(notes));
         renderCalendar(currentYear, currentMonth);
-        alert("Note enregistrée !");
-      }
+        noteBox.style.display = 'none';
+    }
     }
 
     function changeMonth(offset) {
