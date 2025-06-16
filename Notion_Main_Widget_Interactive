@@ -251,7 +251,7 @@
     diaporamaInterval = setInterval(changeBackground, 15000);
 
     setInterval(updateTimeAndDate, 1000);
-    setInterval(setRandomQuote, 60000);
+    setInterval(setRandomQuote, 15000);
 
     toggleBtn.addEventListener("click", () => {
       toggleBtn.classList.add("clicked");
