@@ -211,7 +211,7 @@
       document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
 
       const options = { weekday: "long", month: "long", day: "numeric", year: "numeric" };
-      const formattedDate = now.toLocaleDateString("en-US", options).split(", ");
+      const formattedDate = now.toLocaleDateString("fr-FR", options).split(", ");
       document.getElementById("day").textContent = formattedDate[0];
       document.getElementById("date").textContent = formattedDate.slice(1).join(", ");
     }
