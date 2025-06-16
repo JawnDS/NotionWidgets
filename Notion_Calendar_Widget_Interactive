@@ -129,7 +129,7 @@
 
           if (notes[dateStr]) {
             cell.classList.add('has-note');
-            cell.innerHTML = `<strong>${day}</strong><div style="font-size:10px; color:#0f0;">📝</div>`;
+            cell.innerHTML = `<strong>${day}</strong><div style="font-size:10px; color:#0f0;">🟢</div>`;
           } else {
             cell.textContent = day;
           }
