@@ -48,9 +48,9 @@
       z-index: 1;
       text-align: center;
       padding: 30px;
-      width: 1980px;
+      width: 380px;
       background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
+      border-radius: 17px;
       backdrop-filter: blur(1px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(0, 0, 0, 0.2);
@@ -90,7 +90,7 @@
     .author {
       font-family: "Consolas", monospace;
       font-size: 14px;
-      text-align: center;
+      text-align: right;
       color: #ffffff;
       margin-top: 10px;
     }
