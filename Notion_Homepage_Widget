@@ -221,7 +221,7 @@
       { text: "We gave you a dog companion to make you feel something. It worked.", author: "Fallout 3" },
       { text: "You broke the sequence. Welcome to the bug dimension.", author: "Bethesda Engine" },
       { text: "This enemy adapts to your strategy. Good thing you have none.", author: "Resident Evil 4 Remake" },
-      { text: "This isn’t even my final form.", author: "Every Boss Ever"
+      { text: "This isn’t even my final form.", author: "Every Boss Ever" }
     ];
 
     const images = [
