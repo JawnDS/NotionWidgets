@@ -48,7 +48,7 @@
       z-index: 1;
       text-align: center;
       padding: 30px;
-      width: 380px;
+      width: 550px;
       background: rgba(0, 0, 0, 0.3);
       border-radius: 17px;
       backdrop-filter: blur(1px);
@@ -84,6 +84,7 @@
       font-size: 18px;
       font-style: italic;
       line-height: 1.5;
+      text-align: left;
       margin-bottom: 5px;
     }
 
@@ -286,13 +287,9 @@
       document.getElementById("date").textContent = formattedDate.slice(1).join(", ");
     }
 
-    function formatQuote(text) {
-      return text.replace(/,\s+/g, ",<br>").replace(/\s+and\s+/g, "<br>and ");
-    }
-
     function setRandomQuote() {
       const q = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById("quote").innerHTML = formatQuote(q.text);
+      document.getElementById("quote").textContent = q.text;
       document.getElementById("author").textContent = `— ${q.author}`;
     }
 
