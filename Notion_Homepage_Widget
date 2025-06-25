@@ -36,7 +36,7 @@
       background-size: cover;
       background-position: center;
       opacity: 0;
-      transition: opacity 2s ease-in-out;
+      transition: opacity 4s ease-in-out;
     }
 
     .bg-image.visible {
