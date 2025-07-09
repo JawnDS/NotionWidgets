@@ -259,7 +259,12 @@
       "https://i.imgur.com/iOlu8ef.jpeg",
       "https://i.imgur.com/NrQkFXU.jpeg",
       "https://i.imgur.com/EGku6Lj.jpeg",
-      "https://i.imgur.com/Q6m7IdY.jpeg"
+      "https://i.imgur.com/Q6m7IdY.jpeg",
+      "https://i.imgur.com/8UL2F22.jpeg",
+      "https://i.imgur.com/Y8QaInm.jpeg",
+      "https://i.imgur.com/ghfroLN.jpeg",
+      "https://i.imgur.com/RIOpgC1.jpeg",
+      "https://i.imgur.com/XxU3oYy.jpeg"
     ];
 
     let currentIndex = 0;
